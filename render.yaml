@@ -3,17 +3,11 @@ services:
     name: spam-classifier
     runtime: python
     buildCommand: |
-      python3.10 -m venv .venv
-      . .venv/bin/activate
       python3.10 -m pip install --upgrade pip setuptools wheel
-      python3.10 -m pip install -r requirements.txt
-    startCommand: |
-      . .venv/bin/activate
-      python3.10 app.py
+      python3.10 -m pip install -e .
+    startCommand: python3.10 app.py
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.0
       - key: PIP_NO_CACHE_DIR
         value: "1"
-      - key: VIRTUAL_ENV
-        value: .venv
